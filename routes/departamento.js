@@ -1,5 +1,5 @@
 /*
-    '/api/hospitales'
+    '/api/departamentos'
 */ 
 
 const { Router } = require('express');
@@ -9,36 +9,28 @@ const { check } = require('express-validator');
 const { validarJwt } = require('../middlewares/validar-jwt');
 
 const { validarCampos } = require('../middlewares/validar-campos');
+const { getDepartamentos, crearDepartamento, eliminarDepartamento, actualizarDepartamento } = require('../controllers/departamento');
 
-const {
-    getHospitales,
-    crearHospitales,
-    actualizarHospitales,
-    eliminarHospitales,
-} = require('../controllers/hospitales');
 
 const router = Router();
 
-router.get( '/', getHospitales );
+router.get( '/', getDepartamentos );
 
 router.post( '/',
     [
         validarJwt,
         check('nombre').not().isEmpty(),
-        check('departamento').isMongoId(),
-        check('lat').not().isEmpty(),
-        check('lng').not().isEmpty(),
         validarCampos
     ],
-    crearHospitales 
+    crearDepartamento 
 );
 
 router.put( '/:id', 
     [
     ],
-    actualizarHospitales
+    actualizarDepartamento
 );
 
-router.delete('/:id', eliminarHospitales);
+router.delete('/:id', eliminarDepartamento);
 
 module.exports = router;

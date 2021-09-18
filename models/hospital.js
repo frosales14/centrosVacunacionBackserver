@@ -11,7 +11,21 @@ const HospitalSchema = Schema({
     },
     usuario: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario',required: true
+        ref: 'Usuario',
+        required: true
+    },
+    lat: {
+        type: String,
+        require: true
+    },
+    lng: {
+        type: String,
+        require: true
+    },
+    departamento: {
+        type: Schema.Types.ObjectId,
+        ref: 'Departamento',
+        require: true
     }
 },{ collection: 'hospitales' });
 
